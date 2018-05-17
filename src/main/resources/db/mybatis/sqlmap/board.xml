@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+
+	<!-- 게시글 리스트 페이징 -->
+	<select id="getBoardPageList" resultType="BoardVO" parameterType="map">
+		SELECT *
+		  FROM
+		 		(SELECT rownum rn, board.*
+				  FROM board
+				ORDER BY board_seq)
+		WHERE rn between (#{page}-1) * #{pageSize}+1 AND #{page} * #{pageSize}
+	</select>
+	
+	<!-- 게시글 상세조회  -->
+	<select id="getBoardDetail" parameterType="BoardVO" resultType="BoardVO">
+		SELECT *
+  		  FROM BOARD
+		 WHERE board_seq= #{board_seq} AND category_seq = #{category_seq}
+	</select>
+	
+	<!-- 게시글 입력  -->
+	<insert id="insertBoard" parameterType="BoardVO">
+		insert into BOARD
+			(board_seq, category_seq, title, content, reg_id, reg_dt, del_yn)
+		values ((SELECT MAX(board_seq)+1 FROM BOARD), #{category_seq}, #{title}, #{content}, #{reg_id}, SYSDATE, 'N')
+	</insert>
+	
+	<!-- 게시글 수정  -->
+	<update id="modifyBoard" parameterType="BoardVO">
+		UPDATE BOARD SET 
+				title   = #{title},
+				content = #{content},
+				reg_dt = SYSDATE
+		WHERE board_seq= #{board_seq} AND category_seq = #{category_seq}
+	</update>
+	
+	<!-- 게시글 삭제  -->
+	<update id="deleteBoard" parameterType="BoardVO">
+		UPDATE BOARD SET 
+				atv_yn   = 'Y'
+		WHERE board_seq= #{board_seq} AND category_seq = #{category_seq}
+	</update>
+</mapper>
+
+
+
+
+
+
+
