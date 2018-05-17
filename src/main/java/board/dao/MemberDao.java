@@ -56,6 +56,24 @@ public class MemberDao implements MemberDaoInf {
 		
 		return memVO;
 	}
+
+	@Override
+	public List<MemberVO> getMemberPageList(int page, int pageSize) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getMemberTotalCnt() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public MemberVO getMember(String mem_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	

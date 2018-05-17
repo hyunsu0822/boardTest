@@ -12,10 +12,8 @@
 <%@ page import="java.io.FileOutputStream"%>
 <%@ page import="java.io.InputStream"%>
 <%@ page import="java.io.OutputStream"%>
-<%@ page import="org.apache.commons.fileupload.FileItem"%>
-<%@ page import="org.apache.commons.fileupload.disk.DiskFileItemFactory"%>
-<%@ page import="org.apache.commons.fileupload.servlet.ServletFileUpload"%>
-<%
+
+
 	// 로컬경로에 파일 저장하기 ============================================
 	String return1 = "";
 	String return2 = "";
